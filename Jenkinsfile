@@ -1,16 +1,15 @@
-pipeline {
-    stages {
-        stage('Unit Testing') {
-            steps {
-                sh "echo hii"
+pipeline{
+    agent any
+    stages{
+        stage('Unit Testing'){
+            steps{
+                sh "echo hello C32"
             }
         }
-    }
-
-    stages {
-        stage('Build') {
-            steps {
-                sh "echo Build"
+        stage('Build '){
+            steps{
+                sh "echo hello C32"
+                sh "sleep 10"
             }
         }
     }
