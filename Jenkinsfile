@@ -2,6 +2,11 @@ pipeline{
     agent {
         label 'worker'
     }
+    options {
+        buildDiscarder(logRotator(numToKeepStr: '2'))
+        disableConcurrentBuilds()
+        timeout(time: 5, unit: 'MINUTES')
+    }
     stages{
         stage('Git Checkout') {
         steps {
