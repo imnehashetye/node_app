@@ -32,8 +32,8 @@ pipeline{
                     sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com'
                     sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                     sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker images'
-                    sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker ps'
-                    sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker kill $(docker ps -a)'
+                    sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker ps -q'
+                    sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker kill $(docker ps -q)'
                     sh 'ssh ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com docker run -d -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                 }
                 
