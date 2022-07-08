@@ -1,6 +1,6 @@
 pipeline{
     agent {
-        label 'EC2-Task'
+        label 'worker'
     }
     stages{
         stage('Git Checkout') {
