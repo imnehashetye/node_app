@@ -24,14 +24,14 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh 'ssh -t -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@107.22.133.69 && cd /home/ubuntu/ && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'
+                sh 'ssh -t -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@107.22.133.69 && cd /home/ubuntu/ && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps && docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
             }
         }
     }
     post {
         always {
             deleteDir()
-            // sh 'docker rmi 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+            sh 'docker rmi 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
         }
 
     }
