@@ -27,7 +27,7 @@ pipeline{
             // sh'ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-208-23-240.compute-1.amazonaws.com ${dockerRun}'
             steps{
                 script {
-                    sh'''ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-54-197-8-36.compute-1.amazonaws.com && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'''
+                    sh'''ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-54-197-8-36.compute-1.amazonaws.com && aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'''
                 }
                 
             }
