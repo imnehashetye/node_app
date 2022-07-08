@@ -5,7 +5,7 @@ pipeline{
     options {
         buildDiscarder(logRotator(numToKeepStr: '2'))
         disableConcurrentBuilds()
-        timeout(time: 5, unit: 'MINUTES')
+        timeout(time: 3, unit: 'MINUTES')
     }
     stages{
         stage('Git Checkout') {
