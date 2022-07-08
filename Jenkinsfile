@@ -24,8 +24,7 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh 'ssh -t -t -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@18.212.71.211 
-                    cd /home/ubuntu/node-app
+                sh 'ssh -t -t -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@18.212.71.211 && cd /home/ubuntu/node-app
                     sudo touch test-file 
                     docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest
                     docker ps && docker images 
