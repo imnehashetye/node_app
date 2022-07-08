@@ -24,7 +24,7 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh '''ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-202-249-85.compute-1.amazonaws.com;docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest;docker ps;docker images;docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'''
+                sh '''ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-202-249-85.compute-1.amazonaws.com;docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest;docker ps;docker images;docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'''
             }
         }
     }
