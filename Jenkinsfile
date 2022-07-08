@@ -24,7 +24,7 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh 'ssh -i ~/home/ubuntu/docker-session.pem -o StrictHostKeyChecking=no ubuntu@ec2-107-22-133-69.compute-1.amazonaws.com && cd /home/ubuntu/ && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+                sh 'ssh -i ~/docker-session.pem -o StrictHostKeyChecking=no ubuntu@ec2-107-22-133-69.compute-1.amazonaws.com && cd /home/ubuntu/ && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                 sh 'docker ps'
                 sh 'docker stop 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                 sh 'docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
