@@ -31,7 +31,7 @@ pipeline{
     post {
         always {
             deleteDir()
-            sh 'docker rmi 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+            // sh 'docker rmi 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
         }
 
     }
