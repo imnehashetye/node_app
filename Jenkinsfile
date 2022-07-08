@@ -24,10 +24,7 @@ pipeline{
 
         stage('Deploy'){
             steps{
-                sh '''ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@18.212.71.211 && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps \
-                    docker images \
-                    docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest
-                 '''
+                sh '''ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@18.212.71.211 && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps && docker images && docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'''
             }
         }
     }
