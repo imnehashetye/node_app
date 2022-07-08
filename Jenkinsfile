@@ -26,7 +26,8 @@ pipeline{
             steps{
                 sh '''
                     ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@18.212.71.211
-                    cd /home/ubuntu/ && sudo touch test-file 
+                    cd /home/ubuntu/node-app
+                    sudo touch test-file 
                     docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest
                     docker ps && docker images 
                     docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest
