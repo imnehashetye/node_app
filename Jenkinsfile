@@ -23,11 +23,13 @@ pipeline{
         }
 
         stage('Deploy'){
-            def dockerRun = 'docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+            // def dockerRun = 'docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
             // sh'ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-208-23-240.compute-1.amazonaws.com ${dockerRun}'
             steps{
-                // def dockerRun = 'docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
-                sh'ssh -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-208-23-240.compute-1.amazonaws.com ${dockerRun}'
+                script {
+                    sh'''ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-44-208-23-240.compute-1.amazonaws.com && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'''
+                }
+                
             }
         }
     }
