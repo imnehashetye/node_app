@@ -21,5 +21,21 @@ pipeline{
                 sh 'docker push 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
             }
         }
+
+        stage('Deploy'){
+            steps{
+                sh 'ssh -o StrictHostKeyChecking=no ubuntu@2ndserver && cd /home/ubuntu/ && sudo touch test-file && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+                sh 'docker ps'
+                sh 'docker stop 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+                sh 'docker run -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+            }
+        }
+    }
+    post {
+        always {
+            deleteDir()
+            sh 'docker rmi 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+        }
+
     }
 }
