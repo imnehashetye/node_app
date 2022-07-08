@@ -5,7 +5,7 @@ pipeline{
     options {
         buildDiscarder(logRotator(numToKeepStr: '2'))
         disableConcurrentBuilds()
-        timeout(time: 3, unit: 'MINUTES')
+        timeout(time: 10, unit: 'MINUTES')
     }
     stages{
         stage('Git Checkout') {
@@ -28,6 +28,7 @@ pipeline{
             steps{
                 script {
                     sh'''ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com && aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'''
+                    sh 'docker ps'
                 }
                 
             }
