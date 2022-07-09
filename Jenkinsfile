@@ -34,9 +34,9 @@ pipeline{
                     sh 'ssh ubuntu@10.0.1.56 sudo docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker images'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker ps -q'
-                    // sh 'ssh ubuntu@10.0.1.56 for container_id in $(ssh ubuntu@10.0.1.56 sudo docker ps -q -a);do ssh ubuntu@10.0.1.56 docker rm $container_id;done'
+                    sh 'ssh ubuntu@10.0.1.56 [ ! "$(ssh ubuntu@10.0.1.56 sudo docker ps -a | grep 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest)" ] &&  ssh ubuntu@10.0.1.56 docker rm $container_id;done'
                     // sh 'ssh ubuntu@10.0.1.56 [ $(ssh ubuntu@10.0.1.56 sudo docker ps -q) ssh ubuntu@10.0.1.56 -gt 0 ] && ssh ubuntu@10.0.1.56 sudo docker kill $(ssh ubuntu@10.0.1.56 sudo docker ps -q)'
-                    sh 'ssh ubuntu@10.0.1.56 if [ $(ssh ubuntu@10.0.1.56 sudo docker ps -q) -ne "" ];then ssh ubuntu@10.0.1.56 sudo docker kill $(ssh ubuntu@10.0.1.56 sudo docker ps -q)'
+                    // sh 'ssh ubuntu@10.0.1.56 if [ $(ssh ubuntu@10.0.1.56 sudo docker ps -q) -ne "" ];then ssh ubuntu@10.0.1.56 sudo docker kill $(ssh ubuntu@10.0.1.56 sudo docker ps -q)'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker run -d -p8080:8080 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                 }
                 
