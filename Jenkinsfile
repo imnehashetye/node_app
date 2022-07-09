@@ -30,7 +30,7 @@ pipeline{
                 script {
                     sh 'ssh -i ~/project2-key.pem -o StrictHostKeyChecking=no ubuntu@10.0.1.56'
                     // sh'''ssh -tt -i ~/session.pem -o StrictHostKeyChecking=no ubuntu@ec2-18-212-64-133.compute-1.amazonaws.com && aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com && docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest && docker ps'''
-                    sh 'ssh ubuntu@10.0.1.56 aws ecr get-login-password --region us-east-1 | ssh ubuntu@10.0.1.56 sudo docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com'
+                    sh 'ssh ubuntu@10.0.1.56 aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker pull 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker images'
                     sh 'ssh ubuntu@10.0.1.56 sudo docker ps -q'
