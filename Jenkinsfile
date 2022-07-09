@@ -18,6 +18,7 @@ pipeline{
             steps{
                 sh 'sudo docker build -t node_app .'
                 sh 'sudo docker tag node_app:latest 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
+                sh 'aws ecr get-login-password --region us-east-1 | sudo docker login --username AWS --password-stdin 022536480424.dkr.ecr.us-east-1.amazonaws.com'
                 sh 'sudo docker push 022536480424.dkr.ecr.us-east-1.amazonaws.com/node_app:latest'
             }
         }
